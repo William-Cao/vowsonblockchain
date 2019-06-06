@@ -1,0 +1,323 @@
+html,body {
+    height: 100%;
+}
+.container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* background-color: #202c2f; */
+    background: -webkit-radial-gradient(#263238, #37474f, #455a64); /* Safari 5.1 - 6.0 */
+    background: -o-radial-gradient(#263238, #37474f, #455a64); /* Opera 11.6 - 12.0 */
+    background: -moz-radial-gradient(#263238, #37474f, #455a64); /* Firefox 3.6 - 15 */
+    background: radial-gradient(#263238, #37474f, #455a64); /* 标准的语法（必须放在最后） */
+    background: #000;
+    position: relative;
+    background-image: url('../public/loading/bg1X.png')
+}
+
+.header{
+    height: 60px;
+    line-height: 60px;
+    padding: 0 20px;
+    /* background: #f8f8f8; */
+    color: #ccc;
+    font-size: 24px;
+    /* box-shadow: 0 0 5px #ccc; */
+    border-bottom: 1px solid #666;
+}
+.container main{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.main-container{
+    /* width: 70%; */
+    /* margin: 0 auto; */
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.showword{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    font-size: 14px;
+    color: #666;
+}
+.showword div{
+    font-size: 40px;
+    text-align: center;
+    color: #eee;
+}
+.showword p{
+    text-align: center;
+}
+.showword p span:nth-child(1){
+    margin-right: 30px;
+}
+.setword{
+    display: flex;
+    align-items: center;
+}
+.setword input{
+    flex: 1;
+    height: 50px;
+    padding: 0 20px;
+    font-size: 20px;
+    margin-right: 20px;
+    outline: none;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    transition: all ease .5s;
+}
+.setword input:focus{
+    border-color: #00d9ff;
+    box-shadow: 0 0 5px 2px #00d9ff;
+}
+.setword input:hover{
+    border-color: #00d9ff;
+}
+.setword button{
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+    border: 0;
+    background: #333;
+    color: #eee;
+    border-radius: 3px;
+    transition: all ease .5s;
+    cursor: pointer;
+    outline: none;
+}
+.setword button:hover{
+    background: #000;
+    color: #fff;
+}
+
+.tips{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 14px;
+    color: #999;
+}
+ul{
+    padding-left: 20px;
+}
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    line-break: 40px;
+    font-size: 12px;
+    /* background: #f8f8f8; */
+    color: #666;
+    text-align: center;
+    border-top: 1px solid #666;
+}
+a{
+    text-decoration-line: none;
+}
+footer a{
+    color: #999;
+    margin-left: 10px;
+}
+.loading{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, .65);
+    z-index: -1;
+    opacity: 0;
+    transition: all ease 2s;
+    color: #eee;
+}
+.loading.show{
+    z-index: 999;
+    opacity: 1;
+}
+.loading image{
+    margin-bottom: 50px;
+}
+.title-logo{
+    margin-left: 56px;
+    position: fixed;
+    top: 0;
+}
+.mobileContainer{
+    background: black;
+    height: 100%;
+    width: 100%;
+    background: black url('../public/loading/mobilBg.png') no-repeat
+}
+.mobileTitleLogo{
+    text-align: center;
+}
+.inputContent{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top: 3.5rem;
+}
+.inputWord{
+    height: 2.5rem;
+    width: 100%;
+    background: #000;
+    color: #fff;
+}
+.inputWord::-webkit-input-placeholder{
+    padding-left: 10px;
+}
+.inputTextArea{
+    width: 100%;
+    height: 15rem;
+    margin-top: 1rem;
+    background: #000;
+    color: #fff;
+}
+.inputTextArea::-webkit-input-placeholder{
+    padding-left: 10px;
+    padding-top: 10px;
+}
+.submitBtn{
+    margin-left: 1.9rem;
+    margin-right: 1.9rem;
+    background: #fff;
+    position: relative;
+    left: 3px;
+    height: 2.5rem;
+    text-align: center;
+    line-height: 2.5rem;
+    top: 4rem;
+}
+.mobileLoading{
+    position: absolute;
+    top: 38%;
+    left: 34%;
+}
+.userInputWrap{
+    margin-left: 10px;
+    margin-right: 10px;
+    background: #fff;
+    width: 85%;
+    height: 24rem;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+.userInputWrapH{
+    width: 70%;
+    background: #000;
+    color: #fff;
+    /* border: 1px solid red; */
+    height: 260px;
+    position: absolute;
+    top: 28%;
+    left: 13%;
+    /* -webkit-filter: blur(2px); */
+}
+.userNameWrap{
+    padding-left: 10px;
+}
+.userNameText{
+    display: inline-block;
+    background: #000;
+    margin-top: 30px;
+    color: #fff;
+    font-size: 17px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.userNameTextH{
+    background: #fff;
+    color: #000;
+    font-size: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 20px;
+}
+.txHash{
+    font-size: 12px;
+    color: #444;
+    word-wrap: break-word;
+    word-break: normal;
+}
+.txHashH{
+    color: #c0c0c0;
+}
+.blockNum{
+    font-size: 12px;
+    color: #444;
+}
+.vowWrap{
+    font-size: 20px;
+    min-height: 120px;
+    max-height: 280px;
+    overflow: hidden;
+    /* border: 1px solid #000; */
+    position: relative;
+    padding-bottom: 20px;
+}
+.vowWrapH{
+    font-size: 30px;
+    min-height: 170px;
+    max-height: 330px;
+}
+.vowDate{
+    /* text-align: right; */
+    font-size: 14px;
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+}
+.vowDateH{
+    font-size: 20px;
+    right: 50px;
+}
+.stampPic{
+    width: 100px;
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+    z-index: 999;
+}
+.stampPicH{
+    width: 270px;
+    position: absolute;
+    right: -53px;
+    bottom: -54px;
+    z-index: 999;
+}
+.savePicBtn{
+    top: 2.5rem;
+    left: 0;
+}
+.spec1{
+    width: 330px;
+    left: 20px;
+    top: 30px;
+    -webkit-filter: blur(1px);
+}
+.spec2{
+    width: 330px;
+    right: 20px;
+    top: 10px;
+    -webkit-filter: blur(1px);
+}
+.spec3{
+    width: 330px;
+    right: 0px;
+    top: 100px;
+    -webkit-filter: blur(1px);
+}
+.loading-text{
+    color: #fff;
+}
