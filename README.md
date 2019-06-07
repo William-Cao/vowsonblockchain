@@ -25,13 +25,16 @@ blockChainMessage
 
 环境： nodejs、[truffle](https://www.ldsun.com/2018/02/07/solidityhan-shu-lei-xing-ji-truffleshi-yong/)
 
-1. 下载至本地
-2. 执行 `npm i` 安装依赖
-3. 部署合约，不部署也可以使用（使用我已经部署的合约），不部署合约直接跳至第5步。
-4. 终端当前目录下，`truffle compile`编译合约，接着部署合约，自行选择部署方式，[参考](https://www.ldsun.com/2018/02/22/ji-yu-react-trufflede-wan-zheng-zhi-neng-he-yue-gou-jian/)
-5. 合约部署完成后，得到合约地址，修改`src/App.js`中的合约地址`contractAddress`
-6. 终端当前目录下`npm start`启动前端
-7. 浏览器`localhost:3000`端口即可查看
+1. 下载代码至本地
+2. 进入工程目录，执行 `npm i` 安装依赖
+3. 启动truffle开发环境（需要确保已经安装truffle 0.5.0版本，npm install truffle -g）
+   - 启动命令：truffle develop
+   - 编译部署合约：migrate --reset
+
+4. 终端当前目录下`npm start`启动前端
+
+5. 浏览器`localhost:3000`端口即可查看
+### 线上部署
 
 ### 可能存在的问题
 

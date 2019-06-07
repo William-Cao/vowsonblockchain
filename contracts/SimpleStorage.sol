@@ -1,4 +1,4 @@
-pragma solidity ^0.4.19;
+pragma solidity ^0.5.0;
 
 
 contract SimpleStorage {
@@ -11,7 +11,7 @@ contract SimpleStorage {
 
     Message[] private wordArr;
 
-    function setWord(string s, string t) public {
+    function setWord(string memory s, string memory t) public {
         wordArr.push(Message({
             word : s,
             from : msg.sender,
@@ -19,7 +19,7 @@ contract SimpleStorage {
             }));
     }
 
-    function getRandomWord(uint random) public view returns (uint, string, address, string) {
+    function getRandomWord(uint random) public view returns (uint, string memory , address, string memory) {
         if (wordArr.length == 0) {
             return (0, "", msg.sender, "");
         } else {
@@ -27,6 +27,10 @@ contract SimpleStorage {
             return (wordArr.length, result.word, result.from, result.timestamp);
         }
 
+    }
+
+    function getMessageCount() public view returns(uint) {
+        return wordArr.length;
     }
 
 }
