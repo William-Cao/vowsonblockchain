@@ -238,23 +238,37 @@ class App extends Component {
 	// }
 	componentDidMount () {
 		// setTimeout(() => {
-		//     var audio = document.getElementById('background-audio')
-		//     audio.play()   
+		// 	var audio = document.getElementById('background-audio')
+		// 	audio.play()
 		// }, 1000);
-		// document.addEventListener('DOMContentLoaded', function () {
-		// 	function audioAutoPlay () {
-		// 		var audio = document.getElementById('background-audio');
-		// 		audio.play();
-		// 	}
-		// 	audioAutoPlay();
+		document.addEventListener('click', function () {
+			console.log('click')
+			function audioAutoPlay () {
+				var audio = document.getElementById('background-audio');
+				audio.play();
+			}
+			audioAutoPlay();
+		});
+
+		/**video.play()返回一个promise，未禁止则resolve，禁止则reject**/
+		// let audio = document.getElementById("background-audio");
+		// let audioPlay = audio.play();
+
+		// audioPlay.then(() => {
+		// 	console.log('可以自动播放');
+		// }).catch((err) => {
+		// 	console.log(err);
+		// 	console.log("不允许自动播放");
+		// 	//音频元素只在用户交互后调用.play(),
+		// 	// ...
 		// });
 	}
 
 	render () {
 		return (
 			<div className="container">
-			{/* <audio src={require('../public/loading/bg_audio.mp3')} controls autoPlay="autoplay"></audio> */}
-				{/* <audio hidden="true" src={require('../public/loading/bg_audio.mp3')} type="audio/mp3" loop="loop" id="background-audio" autoPlay="autoplay"></audio> */}
+				{/* <audio src={require('../public/loading/bg_audio.mp3')} controls autoPlay="autoplay" loop="loop" ></audio> */}
+				<audio src={require('../public/loading/bg_audio.mp3')} loop="loop" id="background-audio" autoPlay="autoplay"></audio>
 				<main>
 					<div className="main-container">
 						<div className="title-logo">
@@ -283,8 +297,8 @@ class App extends Component {
 						</div>
 					</div>
 				</div>
-				<audio id="show-audio" loop="loop">
-					<source src={require('../public/loading/yx.mp3')} type="audio/mp3" />	
+				<audio autoPlay="autoplay" loop="loop">
+					<source src={require('../public/loading/yx.mp3')} />
 				</audio>
 			</div>
 		);
@@ -296,49 +310,6 @@ class App extends Component {
 		})
 	}
 
-	// 写入区块链
-	// async setWord () {
-	// 	if (!this.state.input) return
-	// 	const that = this
-	// 	this.setState({
-	// 		loading: true
-	// 	})
-	// 	let timestamp = new Date().getTime()
-	// 	let accounts = await this.state.web3.eth.getAccounts();
-	// 	// let account0 = '0x22c57F0537414FD95b9f0f08f1E51d8b96F14029';
-	// 	const currentAccount = accounts[0];
-	// 	console.log('account 0 :', currentAccount);
-	// 	console.log('simpleStorageInstance:', simpleStorageInstance);
-
-	// 	try {
-	// 		// let result = await simpleStorageInstance.setWord(this.state.input, String(timestamp), {from: currentAccount})
-	// 		let result = await mycontract.methods.setWord(this.state.input, String(timestamp)).send({
-	// 			from: currentAccount,
-	// 			gas: 3000000,
-	// 		});
-	// 		console.log('write successfully!', result);
-	// 		alert(`transactionHash : , ${result.transactionHash}`);
-
-	// 		this.setState({
-	// 			loadingTip: that.state.successTip
-	// 		})
-	// 		setTimeout(() => {
-	// 			that.setState({
-	// 				loading: false,
-	// 				input: '',
-	// 				loadingTip: that.state.waitingTip
-	// 			})
-	// 		}, 1500)
-
-	// 	} catch (e) {
-	// 		console.log('set failed!', e);
-	// 		// 拒绝支付
-	// 		this.setState({
-	// 			loading: false
-	// 		})
-	// 	}
-
-	// }
 
 	// 时间戳转义
 	formatTime (timestamp) {
