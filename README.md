@@ -37,4 +37,5 @@ blockChainMessage
 
 `npm i react-magic aphrodite`
 
-请不要使用 `cnpm` 安装依赖！！！
+请勿使用 `cnpm || yarn` 安装依赖
+请勿修改 `package-lock.json`

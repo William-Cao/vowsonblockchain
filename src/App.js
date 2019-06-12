@@ -10,73 +10,73 @@ import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
 
-const abi = [
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "random",
-				"type": "uint256"
-			}
-		],
-		"name": "getRandomWord",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			},
-			{
-				"name": "",
-				"type": "string"
-			},
-			{
-				"name": "",
-				"type": "address"
-			},
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getMessageCount",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "s",
-				"type": "string"
-			},
-			{
-				"name": "t",
-				"type": "string"
-			}
-		],
-		"name": "setWord",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	}
-]
+// const abi = [
+// 	{
+// 		"constant": true,
+// 		"inputs": [
+// 			{
+// 				"name": "random",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"name": "getRandomWord",
+// 		"outputs": [
+// 			{
+// 				"name": "",
+// 				"type": "uint256"
+// 			},
+// 			{
+// 				"name": "",
+// 				"type": "string"
+// 			},
+// 			{
+// 				"name": "",
+// 				"type": "address"
+// 			},
+// 			{
+// 				"name": "",
+// 				"type": "string"
+// 			}
+// 		],
+// 		"payable": false,
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"constant": true,
+// 		"inputs": [],
+// 		"name": "getMessageCount",
+// 		"outputs": [
+// 			{
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"payable": false,
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"constant": false,
+// 		"inputs": [
+// 			{
+// 				"name": "s",
+// 				"type": "string"
+// 			},
+// 			{
+// 				"name": "t",
+// 				"type": "string"
+// 			}
+// 		],
+// 		"name": "setWord",
+// 		"outputs": [],
+// 		"payable": false,
+// 		"stateMutability": "nonpayable",
+// 		"type": "function"
+// 	}
+// ]
 
-let mycontract;
+// let mycontract;
 
 // animate style
 const styles = StyleSheet.create({
@@ -129,8 +129,7 @@ class App extends Component {
 				})
 				//使用原生api构造合约实例
 				// console.log('provider :', this.state.web3.currentProvider);
-				mycontract = new results.web3.eth.Contract(abi, contractAddress);
-				// console.log('mycontract :', mycontract);
+				// mycontract = new results.web3.eth.Contract(abi, contractAddress);
 				this.instantiateContract()
 			})
 			.catch(() => {
