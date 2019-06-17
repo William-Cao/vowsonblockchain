@@ -193,7 +193,7 @@ class Mobile extends Component {
 
   render () {
     return (
-      <div className="mobileContainer">
+      <div className="mobileContainer" id="mobileContainer">
         <div id="userNameWrap">
           <div className="mobileTitleLogo">
             <img alt="" src={require("../public/loading/logo.png")} />
@@ -208,41 +208,26 @@ class Mobile extends Component {
                 <div onClick={() => this.clickBtn(1)} className="submitBtn">提交Submit</div>
               </div>
               :
-              <div>
-                <div className="userInputWrap">
-                  <div className="userNameWrap">
-                    <div className="userNameText">{this.state.input}</div>
-                    {/* <div className="txHash">Hash: {this.state.blockHash}</div> */}
-                    <div className="txHash">Transaction Hash: {this.state.transactionHash}</div>
-                    {/* input 用来复制到剪切板 */}
-                    <input id="transactionHash" style={{ display: 'none' }} value={this.state.transactionHash}></input>
-                    <div className="blockNum">Block Number: {this.state.blockNumber}</div>
-                    <div className="vowWrap">
-                      <div className="vowText">
-                        Vow: {this.state.textarea}
-                      </div>
-                      <div className="vowDate">{this.state.myDate}</div>
-                      <img alt="" className="stampPic" src={require("../public/loading/group.png")} />
+              <div className="userInputWrap">
+                <div className="userNameWrap">
+                  <div className="userNameText">{this.state.input}</div>
+                  {/* <div className="txHash">Hash: {this.state.blockHash}</div> */}
+                  <div className="txHash">Transaction Hash: {this.state.transactionHash}</div>
+                  {/* input 用来复制到剪切板 */}
+                  <input id="transactionHash" style={{ display: 'none' }} defaultValue={this.state.transactionHash}></input>
+                  <div className="blockNum">Block Number: {this.state.blockNumber}</div>
+                  <div className="vowWrap">
+                    <div className="vowText">
+                      Vow: {this.state.textarea}
                     </div>
+                    <div className="vowDate">{this.state.myDate}</div>
+                    <img alt="" className="stampPic" src={require("../public/loading/group.png")} />
                   </div>
                 </div>
-
               </div>
             )
           }
         </div>
-        {
-          (!this.state.submitFlag ? null :
-            <div onClick={() => this.savePic()} className="submitBtn savePicBtn">点击后下拉保存Save</div>
-          )
-        }
-
-        {
-          (!this.state.submitFlag ? null :
-            <div onClick={() => this.jumpSite()} className="submitBtn savePicBtn">点击复制hash值跳转查询交易</div>
-          )
-        }
-
         <div className={this.state.alertBox ? "loading show" : "loading"}>
           <img alt="" src={require("../public/loading/loading-bubbles.svg")} width="128" height="128" />
           <div className="loading-text">警示：请确认您的誓言，一旦写入永久保存、不可逆、无法篡改。</div>
@@ -251,14 +236,22 @@ class Mobile extends Component {
             <div onClick={() => this.setWord()} className="submitBtn">确定</div>
             <div onClick={() => this.clickBtn(0)} className="submitBtn">取消</div>
           </div>
-
-
         </div>
         <div className={this.state.loading ? "loading show" : "loading"}>
           <img alt="" src={require("../public/loading/loading-bubbles.svg")} width="128" height="128" />
           <div className="loading-text">留言写入区块链时间不等(10s~5min)，请耐心等待区块链写入...</div>
           <div className="loading-text"> Don’t close the page，please waiting…</div>
         </div>
+
+        {
+          (!this.state.submitFlag ? null :
+            <div>
+              <div onClick={() => this.savePic()} className="submitBtn savePicBtn">点击后下拉保存Save</div>
+              {/* <div>{this.state.transactionHash}</div> */}
+              <div onClick={() => this.jumpSite()} className="submitBtn savePicBtn">点击复制hash值跳转查询交易</div>
+            </div>
+          )
+        }
       </div>
 
     )
@@ -285,12 +278,15 @@ class Mobile extends Component {
 
   }
   jumpSite () {
-    // console.log(this.state.transactionHash)
+    console.log(this.state.transactionHash)
     let txt = document.getElementById("transactionHash");
     // 选择对象
     txt.select();
     // 执行浏览器复制命令
-    document.execCommand("Copy", "false", null);
+    document.execCommand('copy');
+    let dada = document.execCommand('copy');
+    console.log(dada)
+    // return
     window.open('https://ropsten.etherscan.io/')
   }
   clickBtn (type) {
@@ -336,8 +332,6 @@ class Mobile extends Component {
         // gasprice: 500
       });
       console.log('write successfully!', result);
-      // alert(`transactionHash : , ${result.transactionHash}`);
-
       this.setState({
         loadingTip: that.state.successTip,
         submitFlag: true,
@@ -363,13 +357,16 @@ class Mobile extends Component {
 
   }
   convert2canvas () {
-    var node = document.getElementById('userNameWrap');
-    if (this.imgDom === true) return
+    let node = document.getElementById('userNameWrap');
+
+    if (this.state.imgDom === true) { return false }
     domtoimage.toPng(node)
-      .then(function (dataUrl) {
+      .then(dataUrl => {
         var img = new Image();
         img.src = dataUrl;
-        document.body.appendChild(img);
+        let node = document.getElementById('mobileContainer');
+        node.appendChild(img);
+
         this.setState({
           imgDom: true
         })
