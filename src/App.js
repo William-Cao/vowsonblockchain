@@ -141,10 +141,19 @@ class App extends Component {
 	randerWord () {
 		setInterval(async () => {
 			console.log('time')
-			let random_num = Math.random() * (this.state.count ? this.state.count : 0)
-			this.setState({
-				random: parseInt(random_num, 10)
-			})
+			console.log(this.state.count,this.state.countOld)
+			if (this.state.count === this.state.countOld) {
+				let random_num = Math.random() * (this.state.count ? this.state.count : 0)
+				this.setState({
+					random: parseInt(random_num, 10)
+				})
+			} else {
+				this.setState({
+					random: 0,
+					countOld: this.state.count
+				})
+			}
+
 			// console.log("setInterval读取", this.state.random)
 
 			// let messageCount = await mycontract.methods.getMessageCount().call();
@@ -152,7 +161,7 @@ class App extends Component {
 
 			simpleStorageInstance.getRandomWord(this.state.random)
 				.then(result => {
-					console.log('showResult', result)
+					// console.log('showResult', result)
 					if (result[1] !== this.setState.word) {
 						this.setState({
 							animate: this.state.out
@@ -202,7 +211,9 @@ class App extends Component {
 					return simpleStorageInstance.getRandomWord(this.state.random)
 				})
 				.then(result => {
-					//console.log("读取成功", result)
+					console.log("读取成功", result)
+					// 修改默认的 -- 你好
+					result[1] = '区块链誓言读取中...'
 					if (result[1] !== this.setState.word) {
 						this.setState({
 							animate: this.state.out
@@ -210,6 +221,7 @@ class App extends Component {
 						setTimeout(() => {
 							that.setState({
 								count: result[0].c[0],
+								countOld: result[0].c[0],
 								word: result[1],
 								from: result[2],
 								timestamp: result[3],
@@ -240,14 +252,14 @@ class App extends Component {
 		// 	var audio = document.getElementById('background-audio')
 		// 	audio.play()
 		// }, 1000);
-		document.addEventListener('click', function () {
-			console.log('click')
-			function audioAutoPlay () {
-				var audio = document.getElementById('background-audio');
-				audio.play();
-			}
-			audioAutoPlay();
-		});
+		// document.addEventListener('click', function () {
+		// 	console.log('click')
+		// 	function audioAutoPlay () {
+		// 		var audio = document.getElementById('background-audio');
+		// 		audio.play();
+		// 	}
+		// 	audioAutoPlay();
+		// });
 
 		/**video.play()返回一个promise，未禁止则resolve，禁止则reject**/
 		// let audio = document.getElementById("background-audio");
@@ -267,7 +279,7 @@ class App extends Component {
 		return (
 			<div className="container">
 				{/* <audio src={require('../public/loading/bg_audio.mp3')} controls autoPlay="autoplay" loop="loop" ></audio> */}
-				<audio src={require('../public/loading/bg_audio.mp3')} loop="loop" id="background-audio" autoPlay="autoplay"></audio>
+				{/* <audio src={require('../public/loading/bg_audio.mp3')} loop="loop" id="background-audio" autoPlay="autoplay"></audio> */}
 				<main>
 					<div className="main-container">
 						<div className="title-logo">
@@ -296,19 +308,12 @@ class App extends Component {
 						</div>
 					</div>
 				</div>
-				<audio autoPlay="autoplay" loop="loop">
+				{/* <audio autoPlay="autoplay" loop="loop">
 					<source src={require('../public/loading/yx.mp3')} />
-				</audio>
+				</audio> */}
 			</div>
 		);
 	}
-
-	inputWord (e) {
-		this.setState({
-			input: e.target.value
-		})
-	}
-
 
 	// 时间戳转义
 	formatTime (timestamp) {

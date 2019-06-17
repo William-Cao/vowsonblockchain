@@ -164,8 +164,7 @@ footer a{
     text-align: center;
 }
 .inputContent{
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding: 0 1.9rem;
     margin-top: 3.5rem;
 }
 .inputWord{
@@ -173,6 +172,7 @@ footer a{
     width: 100%;
     background: #000;
     color: #fff;
+    border: 2px solid #fff;
 }
 .inputWord::-webkit-input-placeholder{
     padding-left: 10px;
@@ -183,6 +183,7 @@ footer a{
     margin-top: 1rem;
     background: #000;
     color: #fff;
+    border: 1px solid #fff;
 }
 .inputTextArea::-webkit-input-placeholder{
     padding-left: 10px;
@@ -193,7 +194,7 @@ footer a{
     margin-right: 1.9rem;
     background: #fff;
     position: relative;
-    left: 3px;
+    /* left: 3px; */
     height: 2.5rem;
     text-align: center;
     line-height: 2.5rem;
@@ -299,6 +300,7 @@ footer a{
 .savePicBtn{
     top: 2.5rem;
     left: 0;
+    margin: 1rem 1.9rem;
 }
 .spec1{
     width: 330px;
@@ -320,4 +322,18 @@ footer a{
 }
 .loading-text{
     color: #fff;
+    text-align: center;
+}
+.loading-text:nth-child(2){
+    margin-bottom: 1rem;
+}
+
+.loading-btn {
+    position: relative;
+    color: #000;
+}
+.loading-btn .submitBtn{
+    display: inline-block;
+    margin: 0 1rem;
+    padding: 0 1.9rem;
 }

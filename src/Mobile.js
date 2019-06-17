@@ -122,8 +122,11 @@ class Mobile extends Component {
       textarea: '',
       submitFlag: false,
       myDate: '',
-      blockHash: '',
-      blockNumber: ''
+      // blockHash: '',
+      transactionHash: '',
+      blockNumber: '',
+      alertBox: false,
+      imgDom: false
     }
   }
 
@@ -199,18 +202,21 @@ class Mobile extends Component {
             (!this.state.submitFlag ?
               <div>
                 <div className="inputContent">
-                  <input placeholder="请输入您的姓名Name" className="inputWord" type="text" value={this.state.input} onChange={e => this.inputWord(e)} />
+                  <input placeholder="请输入您的姓名...Your name..." className="inputWord" type="text" value={this.state.input} onChange={e => this.inputWord(e)} />
                   <textarea placeholder="请输入您的誓言...Your vow..." className="inputTextArea" value={this.state.textarea} onChange={e => this.inputTextarea(e)}></textarea>
                 </div>
-                <div onClick={() => this.setWord()} className="submitBtn">提交Submit</div>
+                <div onClick={() => this.clickBtn(1)} className="submitBtn">提交Submit</div>
               </div>
               :
               <div>
                 <div className="userInputWrap">
                   <div className="userNameWrap">
                     <div className="userNameText">{this.state.input}</div>
-                    <div className="txHash">Hash: {this.state.blockHash}</div>
-                    <div className="blockNum">BlockNumber: {this.state.blockNumber}</div>
+                    {/* <div className="txHash">Hash: {this.state.blockHash}</div> */}
+                    <div className="txHash">Transaction Hash: {this.state.transactionHash}</div>
+                    {/* input 用来复制到剪切板 */}
+                    <input id="transactionHash" style={{ display: 'none' }} value={this.state.transactionHash}></input>
+                    <div className="blockNum">Block Number: {this.state.blockNumber}</div>
                     <div className="vowWrap">
                       <div className="vowText">
                         Vow: {this.state.textarea}
@@ -227,14 +233,31 @@ class Mobile extends Component {
         </div>
         {
           (!this.state.submitFlag ? null :
-            <div onClick={() => this.savePic()} className="submitBtn savePicBtn">点击下拉保存Save</div>
+            <div onClick={() => this.savePic()} className="submitBtn savePicBtn">点击后下拉保存Save</div>
           )
         }
 
+        {
+          (!this.state.submitFlag ? null :
+            <div onClick={() => this.jumpSite()} className="submitBtn savePicBtn">点击复制hash值跳转查询交易</div>
+          )
+        }
+
+        <div className={this.state.alertBox ? "loading show" : "loading"}>
+          <img alt="" src={require("../public/loading/loading-bubbles.svg")} width="128" height="128" />
+          <div className="loading-text">警示：请确认您的誓言，一旦写入永久保存、不可逆、无法篡改。</div>
+          <div className="loading-text"> WARN !</div>
+          <div className="loading-btn">
+            <div onClick={() => this.setWord()} className="submitBtn">确定</div>
+            <div onClick={() => this.clickBtn(0)} className="submitBtn">取消</div>
+          </div>
+
+
+        </div>
         <div className={this.state.loading ? "loading show" : "loading"}>
           <img alt="" src={require("../public/loading/loading-bubbles.svg")} width="128" height="128" />
-          <div className="loading-text">留言写入区块链时间不等(10s~5min)，请耐心等待页面跳转结束</div>
-          <div className="loading-text">Please don’t close page，wait…</div>
+          <div className="loading-text">留言写入区块链时间不等(10s~5min)，请耐心等待区块链写入...</div>
+          <div className="loading-text"> Don’t close the page，please waiting…</div>
         </div>
       </div>
 
@@ -242,14 +265,6 @@ class Mobile extends Component {
   }
   savePic () {
     this.convert2canvas()
-    // this.setState({
-    //     input: '',
-    //     textarea: '',
-    //     myDate: '',
-    //     blockHash: '',
-    //     blockNumber: '',
-    //     submitFlag: false
-    // })
   }
 
   inputWord (e) {
@@ -269,10 +284,35 @@ class Mobile extends Component {
     }
 
   }
+  jumpSite () {
+    // console.log(this.state.transactionHash)
+    let txt = document.getElementById("transactionHash");
+    // 选择对象
+    txt.select();
+    // 执行浏览器复制命令
+    document.execCommand("Copy", "false", null);
+    window.open('https://ropsten.etherscan.io/')
+  }
+  clickBtn (type) {
+    if (!this.state.input || !this.state.textarea) return
+    if (type) {
+      this.setState({
+        alertBox: true
+      })
+    } else {
+      this.setState({
+        alertBox: false
+      })
+    }
+  }
 
   // 写入区块链
   async setWord () {
     if (!this.state.input || !this.state.textarea) return
+    this.setState({
+      alertBox: false
+    })
+    // return
     const that = this
     this.setState({
       loading: true
@@ -301,7 +341,8 @@ class Mobile extends Component {
       this.setState({
         loadingTip: that.state.successTip,
         submitFlag: true,
-        blockHash: result.blockHash,
+        // blockHash: result.blockHash,
+        transactionHash: result.transactionHash,
         blockNumber: result.blockNumber
       })
       setTimeout(() => {
@@ -323,12 +364,15 @@ class Mobile extends Component {
   }
   convert2canvas () {
     var node = document.getElementById('userNameWrap');
-
+    if (this.imgDom === true) return
     domtoimage.toPng(node)
       .then(function (dataUrl) {
         var img = new Image();
         img.src = dataUrl;
         document.body.appendChild(img);
+        this.setState({
+          imgDom: true
+        })
       })
       .catch(function (error) {
         console.error('oops, something went wrong!', error);
