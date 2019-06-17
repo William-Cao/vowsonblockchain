@@ -214,7 +214,7 @@ class Mobile extends Component {
                   {/* <div className="txHash">Hash: {this.state.blockHash}</div> */}
                   <div className="txHash">Transaction Hash: {this.state.transactionHash}</div>
                   {/* input 用来复制到剪切板 */}
-                  <input id="transactionHash" style={{ display: 'none' }} defaultValue={this.state.transactionHash}></input>
+                  {/* <input id="transactionHash" style={{ display: 'none' }} defaultValue={this.state.transactionHash}></input> */}
                   <div className="blockNum">Block Number: {this.state.blockNumber}</div>
                   <div className="vowWrap">
                     <div className="vowText">
@@ -246,9 +246,9 @@ class Mobile extends Component {
         {
           (!this.state.submitFlag ? null :
             <div>
-              <div onClick={() => this.savePic()} className="submitBtn savePicBtn">点击后下拉保存Save</div>
-              {/* <div>{this.state.transactionHash}</div> */}
-              <div onClick={() => this.jumpSite()} className="submitBtn savePicBtn">点击复制hash值跳转查询交易</div>
+              <div onClick={() => this.savePic()} className="submitBtn savePicBtn">点击后下拉出交易凭证 长按可保存</div>
+              <div style={{color: '#fff',textAlign:'center'}}>{this.state.transactionHash}</div>
+              <div onClick={() => this.jumpSite()} className="submitBtn savePicBtn">请复制hash值 点此前往查询交易详情</div>
             </div>
           )
         }
@@ -278,14 +278,14 @@ class Mobile extends Component {
 
   }
   jumpSite () {
-    console.log(this.state.transactionHash)
-    let txt = document.getElementById("transactionHash");
-    // 选择对象
-    txt.select();
-    // 执行浏览器复制命令
-    document.execCommand('copy');
-    let dada = document.execCommand('copy');
-    console.log(dada)
+    // console.log(this.state.transactionHash)
+    // let txt = document.getElementById("transactionHash");
+    // // 选择对象
+    // txt.select();
+    // // 执行浏览器复制命令
+    // document.execCommand('copy');
+    // let dada = document.execCommand('copy');
+    // console.log(dada)
     // return
     window.open('https://ropsten.etherscan.io/')
   }

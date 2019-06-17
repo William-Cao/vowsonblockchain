@@ -5,6 +5,9 @@ import getWeb3 from './utils/getWeb3'
 import { StyleSheet, css } from 'aphrodite';
 import { spaceInLeft, spaceOutRight } from 'react-magic';
 
+
+// import BigNumber from 'bignumber.js'
+
 import './css/oswald.css'
 import './css/open-sans.css'
 import './css/pure-min.css'
@@ -105,6 +108,7 @@ class App extends Component {
 			timestamp: null,
 			random: 0,
 			count: 0,
+			countOld: 0,
 			input: '',
 			web3: null,
 			emptyTip: "还没有留言，快来创建全世界第一条留言吧~",
@@ -139,55 +143,46 @@ class App extends Component {
 
 	// 循环从区块上随机读取留言
 	randerWord () {
-		setInterval(async () => {
-			console.log('time')
-			console.log(this.state.count,this.state.countOld)
+		setInterval(() => {
+			// console.log('time')
+			// console.log(this.state.count, this.state.countOld)
 			if (this.state.count === this.state.countOld) {
 				let random_num = Math.random() * (this.state.count ? this.state.count : 0)
+				// console.log(random_num)
 				this.setState({
 					random: parseInt(random_num, 10)
 				})
 			} else {
 				this.setState({
-					random: 0,
+					random: this.state.count - 1,
 					countOld: this.state.count
 				})
 			}
-
-			// console.log("setInterval读取", this.state.random)
-
 			// let messageCount = await mycontract.methods.getMessageCount().call();
 			// console.log('message count :', messageCount);
-
 			simpleStorageInstance.getRandomWord(this.state.random)
 				.then(result => {
-					// console.log('showResult', result)
-					if (result[1] !== this.setState.word) {
+					console.log(result)
+					if (result[1] !== this.state.word) {
 						this.setState({
 							animate: this.state.out
 						})
 						setTimeout(() => {
-							// let dataList = this.state.dataList
-							// dataList = dataList.push(result[1])
-							// console.log(80, dataList)
+							// console.log(result[1].indexOf('&%^') )
 							if (result[1].indexOf('&%^') > -1) {
 								this.setState({
-									stamp: false
-								})
-								this.setState({
+									stamp: false,
 									count: result[0].c[0],
 									word: result[1],
 									from: result[2],
 									timestamp: result[3],
 									animate: this.state.in,
-									// dataList: this.state.dataList + '||' + result[1]
 								})
-								// this.startAudio()
 								setTimeout(() => {
 									this.setState({
 										stamp: true
 									})
-								}, 15000)
+								}, 10000)
 							}
 						}, 2000)
 					}
@@ -196,7 +191,6 @@ class App extends Component {
 	}
 
 	instantiateContract () {
-		const that = this
 		const contract = require('truffle-contract')
 		const simpleStorage = contract(SimpleStorageContract)
 		simpleStorage.setProvider(this.state.web3.currentProvider)
@@ -212,17 +206,18 @@ class App extends Component {
 				})
 				.then(result => {
 					console.log("读取成功", result)
-					// 修改默认的 -- 你好
 					result[1] = '区块链誓言读取中...'
-					if (result[1] !== this.setState.word) {
+					if (result[1] !== this.state.word) {
+						// 修改默认的 -- 你好
 						this.setState({
 							animate: this.state.out
 						})
 						setTimeout(() => {
-							that.setState({
+							this.setState({
 								count: result[0].c[0],
-								countOld: result[0].c[0],
-								word: result[1],
+								countOld: 0,
+								// word: result[1],
+								word: '区块链誓言读取中...',
 								from: result[2],
 								timestamp: result[3],
 								animate: this.state.in,
@@ -239,6 +234,14 @@ class App extends Component {
 
 		})
 	}
+
+	toNonExponential (num) {
+		var m = num.toExponential().match(/\d(?:\.(\d*))?e([+-]\d+)/);
+		return num.toFixed(Math.max(0, (m[1] || '').length - m[2]));
+	}
+
+
+
 	// startAudio () {
 	// 	console.log('music')
 	// 	let audio = document.getElementById('show-audio');
