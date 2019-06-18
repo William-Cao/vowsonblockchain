@@ -174,13 +174,13 @@ footer a{
     background: #000;
     color: #fff;
     border: 2px solid #fff;
+    /* text-indent: 10px; */
 }
 
 .inputTextArea{
     width: 100%;
     height: 15rem;
     margin-top: 1rem;
-    padding-top: 10px;
     background: #000;
     color: #fff;
     border: 2px solid #fff;
@@ -337,5 +337,4 @@ input, textarea{
     margin: 0;
     border: none;
     margin: 0 -4px;
-    text-indent: 10px;
 }

@@ -202,8 +202,8 @@ class Mobile extends Component {
             (!this.state.submitFlag ?
               <div>
                 <div className="inputContent">
-                  <input placeholder="请输入您的姓名...Your name..." className="inputWord" type="text" value={this.state.input} onChange={e => this.inputWord(e)} />
-                  <textarea placeholder="请输入您的誓言...Your vow..." className="inputTextArea" value={this.state.textarea} onChange={e => this.inputTextarea(e)}></textarea>
+                  <input placeholder="  请输入您的姓名...Your name..." className="inputWord" type="text" value={this.state.input} onChange={e => this.inputWord(e)} />
+                  <textarea placeholder="  请输入您的誓言...Your vow..." className="inputTextArea" value={this.state.textarea} onChange={e => this.inputTextarea(e)}></textarea>
                 </div>
                 <div onClick={() => this.clickBtn(1)} className="submitBtn">提交Submit</div>
               </div>
