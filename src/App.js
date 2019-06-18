@@ -240,16 +240,6 @@ class App extends Component {
 		return num.toFixed(Math.max(0, (m[1] || '').length - m[2]));
 	}
 
-
-
-	// startAudio () {
-	// 	console.log('music')
-	// 	let audio = document.getElementById('show-audio');
-	// 	if (audio.paused) {
-	// 		audio.load()
-	// 		// audio.play();
-	// 	} 
-	// }
 	componentDidMount () {
 		// setTimeout(() => {
 		// 	var audio = document.getElementById('background-audio')
@@ -262,19 +252,6 @@ class App extends Component {
 		// 		audio.play();
 		// 	}
 		// 	audioAutoPlay();
-		// });
-
-		/**video.play()返回一个promise，未禁止则resolve，禁止则reject**/
-		// let audio = document.getElementById("background-audio");
-		// let audioPlay = audio.play();
-
-		// audioPlay.then(() => {
-		// 	console.log('可以自动播放');
-		// }).catch((err) => {
-		// 	console.log(err);
-		// 	console.log("不允许自动播放");
-		// 	//音频元素只在用户交互后调用.play(),
-		// 	// ...
 		// });
 	}
 

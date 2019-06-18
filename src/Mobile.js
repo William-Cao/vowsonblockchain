@@ -123,7 +123,7 @@ class Mobile extends Component {
       submitFlag: false,
       myDate: '',
       // blockHash: '',
-      transactionHash: '',
+      transactionHash: 'fdfdfdfdfdfhkdhfkjdhkfhdkhfkjdhfkjhdkjhfkdhkfhdkfhkdhfkjdhfjkdhkjfhkdjfhkdhfkdhkfkj',
       blockNumber: '',
       alertBox: false,
       imgDom: false
@@ -202,8 +202,8 @@ class Mobile extends Component {
             (!this.state.submitFlag ?
               <div>
                 <div className="inputContent">
-                  <input placeholder="  请输入您的姓名...Your name..." className="inputWord" type="text" value={this.state.input} onChange={e => this.inputWord(e)} />
-                  <textarea placeholder="  请输入您的誓言...Your vow..." className="inputTextArea" value={this.state.textarea} onChange={e => this.inputTextarea(e)}></textarea>
+                  <input placeholder="请输入您的姓名...Your name..." className="inputWord" type="text" value={this.state.input} onChange={e => this.inputWord(e)} />
+                  <textarea placeholder="请输入您的誓言...Your vow..." className="inputTextArea" value={this.state.textarea} onChange={e => this.inputTextarea(e)}></textarea>
                 </div>
                 <div onClick={() => this.clickBtn(1)} className="submitBtn">提交Submit</div>
               </div>
@@ -211,9 +211,7 @@ class Mobile extends Component {
               <div className="userInputWrap">
                 <div className="userNameWrap">
                   <div className="userNameText">{this.state.input}</div>
-                  {/* <div className="txHash">Hash: {this.state.blockHash}</div> */}
                   <div className="txHash">Transaction Hash: {this.state.transactionHash}</div>
-                  {/* input 用来复制到剪切板 */}
                   {/* <input id="transactionHash" style={{ display: 'none' }} defaultValue={this.state.transactionHash}></input> */}
                   <div className="blockNum">Block Number: {this.state.blockNumber}</div>
                   <div className="vowWrap">
@@ -247,7 +245,7 @@ class Mobile extends Component {
           (!this.state.submitFlag ? null :
             <div>
               <div onClick={() => this.savePic()} className="submitBtn savePicBtn">点击后下拉出交易凭证 长按可保存</div>
-              <div style={{color: '#fff',textAlign:'center'}}>{this.state.transactionHash}</div>
+              <div className="savePicBtn" style={{color: '#fff',textAlign:'center',wordBreak:'break-all'}}>{this.state.transactionHash}</div>
               <div onClick={() => this.jumpSite()} className="submitBtn savePicBtn">请复制hash值 点此前往查询交易详情</div>
             </div>
           )
