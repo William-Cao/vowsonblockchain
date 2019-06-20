@@ -143,9 +143,9 @@ class App extends Component {
 
 	// 循环从区块上随机读取留言
 	randerWord () {
-		setInterval(() => {
+		let readingVows = setInterval(() => {
 			// console.log('time')
-			// console.log(this.state.count, this.state.countOld)
+			console.log(this.state.count, this.state.countOld)
 			if (this.state.count === this.state.countOld) {
 				let random_num = Math.random() * (this.state.count ? this.state.count : 0)
 				// console.log(random_num)
@@ -162,13 +162,13 @@ class App extends Component {
 			// console.log('message count :', messageCount);
 			simpleStorageInstance.getRandomWord(this.state.random)
 				.then(result => {
-					console.log(result)
+					// console.log(result)
 					if (result[1] !== this.state.word) {
 						this.setState({
 							animate: this.state.out
 						})
 						setTimeout(() => {
-							// console.log(result[1].indexOf('&%^') )
+							// console.log(result[1].indexOf('&%^'))
 							if (result[1].indexOf('&%^') > -1) {
 								this.setState({
 									stamp: false,
@@ -183,6 +183,10 @@ class App extends Component {
 										stamp: true
 									})
 								}, 10000)
+							} else {
+								clearInterval(readingVows)
+								console.log('不符合规则的留言，马上读取下一条~')
+								this.randerWord()
 							}
 						}, 2000)
 					}
@@ -205,7 +209,7 @@ class App extends Component {
 					return simpleStorageInstance.getRandomWord(this.state.random)
 				})
 				.then(result => {
-					console.log("读取成功", result)
+					// console.log("读取成功", result)
 					result[1] = '区块链誓言读取中...'
 					if (result[1] !== this.state.word) {
 						// 修改默认的 -- 你好
