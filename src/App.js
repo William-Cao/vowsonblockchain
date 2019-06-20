@@ -163,32 +163,32 @@ class App extends Component {
 			simpleStorageInstance.getRandomWord(this.state.random)
 				.then(result => {
 					// console.log(result)
-					if (result[1] !== this.state.word) {
+					if (result[1] !== this.state.word && result[1].indexOf('&%^') > -1) {
 						this.setState({
 							animate: this.state.out
 						})
 						setTimeout(() => {
-							// console.log(result[1].indexOf('&%^'))
-							if (result[1].indexOf('&%^') > -1) {
+							this.setState({
+								stamp: false,
+								count: result[0].c[0],
+								word: result[1],
+								from: result[2],
+								timestamp: result[3],
+								animate: this.state.in,
+							})
+							setTimeout(() => {
 								this.setState({
-									stamp: false,
-									count: result[0].c[0],
-									word: result[1],
-									from: result[2],
-									timestamp: result[3],
-									animate: this.state.in,
+									stamp: true
 								})
-								setTimeout(() => {
-									this.setState({
-										stamp: true
-									})
-								}, 10000)
-							} else {
-								clearInterval(readingVows)
-								console.log('不符合规则的留言，马上读取下一条~')
-								this.randerWord()
-							}
+							}, 10000)
 						}, 2000)
+					} else {
+						this.setState({
+							animate: this.state.in
+						})
+						clearInterval(readingVows)
+						console.log('不符合规则的留言，马上读取下一条~')
+						this.randerWord()
 					}
 				})
 		}, 20000)
