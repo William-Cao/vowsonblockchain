@@ -1,10 +1,12 @@
 html,body {
     height: 100%;
-    overflow: hidden;
-    background:black;
+    width: 100%;
+    background:#000;
 }
 .container{
     height: 100%;
+    width: 100%;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     /* background-color: #202c2f; */
@@ -12,9 +14,8 @@ html,body {
     background: -o-radial-gradient(#263238, #37474f, #455a64); /* Opera 11.6 - 12.0 */
     background: -moz-radial-gradient(#263238, #37474f, #455a64); /* Firefox 3.6 - 15 */
     background: radial-gradient(#263238, #37474f, #455a64); /* 标准的语法（必须放在最后） */
-    background: #000;
     position: relative;
-    background-image: url('../public/loading/bg1X.png')
+    background: url('../public/loading/bg1X.png') no-repeat;
 }
 
 .header{
@@ -157,10 +158,9 @@ footer a{
     top: 0;
 }
 .mobileContainer{
-    background: black;
     height: 100%;
     width: 100%;
-    background: black url('../public/loading/mobilBg.png') no-repeat
+    background: black url('../public/loading/mobilBg.png') no-repeat;
 }
 .mobileTitleLogo{
     text-align: center;
