@@ -6,7 +6,6 @@ import { StyleSheet, css } from 'aphrodite';
 import { spaceInLeft, spaceOutRight } from 'react-magic';
 
 import skyStar from './utils/skyStar'
-skyStar()
 // import BigNumber from 'bignumber.js'
 
 // const abi = [
@@ -241,6 +240,7 @@ class App extends Component {
 	}
 
 	componentDidMount () {
+		skyStar()
 		// setTimeout(() => {
 		// 	var audio = document.getElementById('background-audio')
 		// 	audio.play()
@@ -258,6 +258,7 @@ class App extends Component {
 	render () {
 		return (
 			<div className="container">
+				<canvas id="skyStar"></canvas>
 				{/* <audio src={require('../public/loading/bg_audio.mp3')} controls autoPlay="autoplay" loop="loop" ></audio> */}
 				{/* <audio src={require('../public/loading/bg_audio.mp3')} loop="loop" id="background-audio" autoPlay="autoplay"></audio> */}
 				<main>

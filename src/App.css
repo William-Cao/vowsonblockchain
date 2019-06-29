@@ -9,10 +9,8 @@ html,body {
     background:#000;
     font-family: sans-serif;
 }
-
 #skyStar {
     position: fixed;
-    z-index: 0;
     top: 0;
     left: 0;
 }
@@ -183,7 +181,7 @@ footer a{
     padding-left: 10px;
     height: 2.5rem;
     width: 100%;
-    background: #000;
+    background: unset;
     color: #fff;
     border: 2px solid #fff;
     /* text-indent: 10px; */
@@ -193,7 +191,7 @@ footer a{
     width: 100%;
     height: 15rem;
     margin-top: 1rem;
-    background: #000;
+    background: unset;
     color: #fff;
     padding-left: 10px;
     padding-top: 10px;
