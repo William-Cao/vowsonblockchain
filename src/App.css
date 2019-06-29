@@ -1,21 +1,29 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
 html,body {
     height: 100%;
     width: 100%;
     background:#000;
+    font-family: sans-serif;
 }
+
+#skyStar {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
 .container{
     height: 100%;
     width: 100%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    /* background-color: #202c2f; */
-    background: -webkit-radial-gradient(#263238, #37474f, #455a64); /* Safari 5.1 - 6.0 */
-    background: -o-radial-gradient(#263238, #37474f, #455a64); /* Opera 11.6 - 12.0 */
-    background: -moz-radial-gradient(#263238, #37474f, #455a64); /* Firefox 3.6 - 15 */
-    background: radial-gradient(#263238, #37474f, #455a64); /* 标准的语法（必须放在最后） */
     position: relative;
-    background: url('../public/loading/bg1X.png');
+    /* background: url('../public/loading/bg1X.png') 50px center; */
 }
 
 .header{
@@ -202,7 +210,7 @@ footer a{
 .userInputWrap{
     margin-left: 10px;
     margin-right: 10px;
-    background: #fff;
+    /* background: #fff; */
     width: 85%;
     height: 24rem;
     margin: 0 auto;
@@ -210,7 +218,7 @@ footer a{
 }
 .userInputWrapH{
     width: 70%;
-    background: #000;
+    /* background: #000; */
     color: #fff;
     height: 260px;
     position: absolute;

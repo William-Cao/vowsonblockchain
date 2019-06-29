@@ -5,13 +5,8 @@ import getWeb3 from './utils/getWeb3'
 import { StyleSheet, css } from 'aphrodite';
 import { spaceInLeft, spaceOutRight } from 'react-magic';
 
-
+import skyStar from './utils/skyStar'
 // import BigNumber from 'bignumber.js'
-
-import './css/oswald.css'
-import './css/open-sans.css'
-import './css/pure-min.css'
-import './App.css'
 
 // const abi = [
 // 	{
@@ -126,6 +121,7 @@ class App extends Component {
 	}
 
 	componentWillMount () {
+		skyStar();
 		getWeb3
 			.then(results => {
 				this.setState({

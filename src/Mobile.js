@@ -8,11 +8,6 @@ import { spaceInLeft, spaceOutRight } from 'react-magic';
 // import Canvas2Image from 'canvas2image'
 import domtoimage from 'dom-to-image';
 
-import './css/oswald.css'
-import './css/open-sans.css'
-import './css/pure-min.css'
-import './App.css'
-
 const abi = [
   {
     "constant": true,
