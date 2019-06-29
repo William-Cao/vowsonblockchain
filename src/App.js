@@ -6,6 +6,7 @@ import { StyleSheet, css } from 'aphrodite';
 import { spaceInLeft, spaceOutRight } from 'react-magic';
 
 import skyStar from './utils/skyStar'
+skyStar()
 // import BigNumber from 'bignumber.js'
 
 // const abi = [
@@ -121,7 +122,6 @@ class App extends Component {
 	}
 
 	componentWillMount () {
-		skyStar();
 		getWeb3
 			.then(results => {
 				this.setState({
