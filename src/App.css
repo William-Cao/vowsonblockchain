@@ -15,7 +15,7 @@ html,body {
     background: -moz-radial-gradient(#263238, #37474f, #455a64); /* Firefox 3.6 - 15 */
     background: radial-gradient(#263238, #37474f, #455a64); /* 标准的语法（必须放在最后） */
     position: relative;
-    background: url('../public/loading/bg1X.png') no-repeat;
+    background: url('../public/loading/bg1X.png');
 }
 
 .header{
